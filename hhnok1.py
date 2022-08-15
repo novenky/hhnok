@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import re
 from collections import Counter
 from datetime import datetime,timedelta
@@ -31,14 +33,14 @@ def dict_producer(ss:str,se:str)->dict[str,int]:
 #    print(d)
     return d   
 
-def main():
+#def main():
 
 #читаем логфайл целиком
-    try:
-        with open(fname) as f:
-            lines = [i for i in f.readlines() if bool(pattern0.search(i))]
-    except FileNotFoundError:
-        print("ПРОВЕРЬТЕ НАЛИЧИЕ ФАЙЛА events.log. ЕГО НЕТ, УВЫ ")
+try:
+    with open(fname) as f:
+        lines = [i for i in f.readlines() if bool(pattern0.search(i))]
+except FileNotFoundError:
+    print("ПРОВЕРЬТЕ НАЛИЧИЕ ФАЙЛА events.log. ЕГО НЕТ, УВЫ ")
     
 #формируем хорошо отформатированный лист убирая лишние пробелы, пустые строки etc   
 filtered_list = list(map(f3,(filter(lambda e:bool(pattern1.search(e)),lines))))    
@@ -52,6 +54,6 @@ ko2=dict_producer(take_start_and_end_time(lines)[0],take_start_and_end_time(line
 for i,j in ({**ko2,**ko1}).items():
     print(f"{i:<20}{'NOK'}{j:>7}")
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    main()
     
